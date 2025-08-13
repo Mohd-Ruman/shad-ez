@@ -2,6 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { ArrowUpDown } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 
 export const columns = [
   {
@@ -42,7 +50,26 @@ export const columns = [
   },
   {
     accessorKey: "role",
-    header: "Role",
+    header: ({ column }) => (
+      <Select
+        onValueChange={(value) => {
+          column.setFilterValue(value === "all" ? undefined : value);
+        }}
+      >
+        <SelectTrigger className="w-[140px]">
+          <SelectValue placeholder="Filter Role" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="all">All Roles</SelectItem>
+          <SelectItem value="admin">Admin</SelectItem>
+          <SelectItem value="viewer">Viewer</SelectItem>
+          <SelectItem value="editor">Editor</SelectItem>
+        </SelectContent>
+      </Select>
+    ),
+    cell: ({row}) => (
+      <div className="uppercase">{row.getValue("role")}</div>
+    )
   },
   {
     accessorKey: "status",
