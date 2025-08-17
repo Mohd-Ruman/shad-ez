@@ -21,6 +21,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+import CreateNew from '@/admin/user-management/components/CreateNew.jsx'
+
 export default function DataTable({ columns, data }) {
   const [sorting, setSorting] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
@@ -65,6 +67,10 @@ export default function DataTable({ columns, data }) {
               </option>
             ))}
           </select>
+
+          
+          <CreateNew/>
+          
         </div>
       </div>
 
@@ -135,7 +141,7 @@ export default function DataTable({ columns, data }) {
           disabled={!table.getCanNextPage()}
         >
           Next
-        </Button>
+        </Button> 
       </div>
     </div>
   );
